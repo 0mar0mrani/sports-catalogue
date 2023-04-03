@@ -38,6 +38,7 @@ export default {
                { title: 'XL', value: 'xl' },
                { title: 'XXL', value: 'xxl' },
             ],
+            default: 'm',
          },
       },
       {
@@ -56,10 +57,11 @@ export default {
                type: 'string',
                options: {
                   list: [
-                     { title: 'NOK', value: 'NOK' }, 
-                     { title: 'USD', value: 'USD' },
-                     { title: 'EUR', value: 'EUR' },
+                     { title: 'NOK', value: 'nok' }, 
+                     { title: 'USD', value: 'usd' },
+                     { title: 'EUR', value: 'eur' },
                   ],
+                  default: 'nok',
                },
             },
          ],
