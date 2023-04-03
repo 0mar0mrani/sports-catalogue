@@ -1,31 +1,36 @@
 import {sanity} from '../sanity.js'
 
 export default async function Product() {
-
+   
    let productResults = []; 
-   let currentCategory = 'pants';
-   let currentBrand = 'Adidas';
-
+   let currentCategory = '';
+   let currentBrand = '';
+   
    const productList = document.querySelector('.product-list__results');
-
+   
    async function fetchProducts() {
       const categoryQuery = `${currentCategory !== '' ? '&& category->.name == $category' : ''}`
       const brandQuery = `${currentBrand !== '' ? '&& brand->.name == $brand' : ''}`
-      const query = `*[_type == 'product' ${categoryQuery} ${brandQuery}]`;
-
+      const query = `*[_type == 'product' ${categoryQuery} ${brandQuery}] {
+         'title': name,
+         'image': image.asset->url,
+         'suggestedPrice': suggestedPrice
+      }`;
+      
+      
       const params = {
          category: currentCategory,
          brand: currentBrand,
       }
-
+      
       productResults = await sanity.fetch(query, params);
    }
-
+   
    function createProductListContainerDOM() {
       const productListContainer = document.createElement('div');
       productListContainer.className = 'product-list__container';
 
-      for(const product of productResults) {
+      for (const product of productResults) {
          const productListItem = document.createElement('div');
          const productTitle = document.createElement('p');
          const productImage = document.createElement('img');
@@ -36,11 +41,9 @@ export default async function Product() {
          productImage.className = 'product-list__item-image';
          productPrice.className = 'product-list__item-price';
 
-
          productTitle.innerText = product.title;
          productImage.src = product.image;
-         productPrice.innerText = product.suggestedPrice;
-
+         productPrice.innerText = `${product.suggestedPrice.number} ${product.suggestedPrice.currency}`;
 
          productListContainer.appendChild(productListItem);
          productListItem.appendChild(productTitle);
@@ -51,12 +54,13 @@ export default async function Product() {
       return productListContainer;
    }
 
+   
    function renderProducts() {
       const productListContainer = createProductListContainerDOM();
       productList.innerHTML = '';
       productList.appendChild(productListContainer);
    }
-
-	await fetchProducts();
+   
+   await fetchProducts();
    renderProducts();
 }
