@@ -28,13 +28,17 @@ export default {
       {
          title: 'Sizes',
          name: 'sizes',
-         type: 'array',
-         of: [
-            {
-               type: 'reference',
-               to: [{ type: 'size' }],
-            },
-         ],
+         type: 'string',
+         options: {
+            list: [
+               { title: 'XS', value: 'xs' }, 
+               { title: 'S', value: 's' },
+               { title: 'M', value: 'm' },
+               { title: 'L', value: 'l' },
+               { title: 'XL', value: 'xl' },
+               { title: 'XXL', value: 'xxl' },
+            ],
+         },
       },
       {
          title: 'Suggested price',
