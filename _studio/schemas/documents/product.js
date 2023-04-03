@@ -28,18 +28,24 @@ export default {
       {
          title: 'Sizes',
          name: 'sizes',
-         type: 'string',
-         options: {
-            list: [
-               { title: 'XS', value: 'xs' }, 
-               { title: 'S', value: 's' },
-               { title: 'M', value: 'm' },
-               { title: 'L', value: 'l' },
-               { title: 'XL', value: 'xl' },
-               { title: 'XXL', value: 'xxl' },
-            ],
-            default: 'm',
-         },
+         type: 'array',
+         of: [
+				{
+					type: 'string',
+               options: {
+                  list: [
+                     { title: 'XS', value: 'xs' }, 
+                     { title: 'S', value: 's' },
+                     { title: 'M', value: 'm' },
+                     { title: 'L', value: 'l' },
+                     { title: 'XL', value: 'xl' },
+                     { title: 'XXL', value: 'xxl' },
+                  ],
+                  default: 'm',
+               },
+            }
+         ]
+   
       },
       {
          title: 'Suggested price',
