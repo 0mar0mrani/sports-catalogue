@@ -1,11 +1,10 @@
 import {sanity} from '../sanity.js'
 
 export default async function Product() {
-
-   let productResults = []; 
    let currentCategory = 'pants';
    let currentBrand = 'Adidas';
-
+   let products = []; 
+   
    const productList = document.querySelector('.product-list__results');
 
    async function fetchProducts() {
@@ -18,14 +17,14 @@ export default async function Product() {
          brand: currentBrand,
       }
 
-      productResults = await sanity.fetch(query, params);
+      products = await sanity.fetch(query, params);
    }
 
    function createProductListContainerDOM() {
       const productListContainer = document.createElement('div');
       productListContainer.className = 'product-list__container';
 
-      for(const product of productResults) {
+      for(const product of products) {
          const productListItem = document.createElement('div');
          const productTitle = document.createElement('p');
          const productImage = document.createElement('img');
