@@ -1,26 +1,24 @@
 import {sanity} from '../sanity.js'
 
-export default function Product() {
+export default async function Product() {
 
    let productResults = []; 
+   let currentCategory = 'pants';
+   let currentBrand = 'Adidas';
 
    const productList = document.querySelector('.product-list__results');
 
    async function fetchProducts() {
-      const query = `*[_type == 'product'] {
-         _id,
-         image,
-         title,
-         suggestedPrice, 
-
-      }`;
+      const categoryQuery = `${currentCategory !== '' ? '&& category->.name == $category' : ''}`
+      const brandQuery = `${currentBrand !== '' ? '&& brand->.name == $brand' : ''}`
+      const query = `*[_type == 'product' ${categoryQuery} ${brandQuery}]`;
 
       const params = {
-
+         category: currentCategory,
+         brand: currentBrand,
       }
 
       productResults = await sanity.fetch(query, params);
-		console.log(productResults)
    }
 
    function createProductListContainerDOM() {
@@ -59,6 +57,6 @@ export default function Product() {
       productList.appendChild(productListContainer);
    }
 
-	fetchProducts();
+	await fetchProducts();
    renderProducts();
 }
