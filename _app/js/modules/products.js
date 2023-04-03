@@ -1,13 +1,33 @@
 import {sanity} from '../sanity.js'
 
 export default async function Product() {
-   
+   let currentCategory = '';
+   let currentBrand = '';
    let products = []; 
    let currentCategory = '';
    let currentBrand = '';
    
    const productList = document.querySelector('.product-list__results');
+   const categoryDropdown = document.querySelector('#header__category');
+   const brandDropdown = document.querySelector('#header__brand');
    
+   categoryDropdown.addEventListener('change', handleCategoryDropdownChange);
+   brandDropdown.addEventListener('change', handleBrandDropdownChange)
+
+   async function handleCategoryDropdownChange() {
+      const input = categoryDropdown.value; 
+      currentCategory = input;
+      await fetchProducts();
+      renderProducts();
+   }
+
+   async function handleBrandDropdownChange() {
+      const input = brandDropdown.value; 
+      currentBrand = input;
+      await fetchProducts();
+      renderProducts();
+   }
+
    async function fetchProducts() {
       const categoryQuery = `${currentCategory !== '' ? '&& category->.name == $category' : ''}`
       const brandQuery = `${currentBrand !== '' ? '&& brand->.name == $brand' : ''}`

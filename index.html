@@ -10,12 +10,31 @@
 	</head>
 	
 	<body>
-		<header class="header"></header>
+		<header class="header">
+			<select name="header__category" id="header__category">
+				<option value="">All categories</option>
+				<option value="T-shirt">T-shirt</option>
+				<option value="Pants">Pants</option>
+				<option value="Socks">Socks</option>
+				<option value="Sweater">Sweater</option>
+			</select>
+
+			<select name="header__brand" id="header__brand">
+				<option value="">All brands</option>
+				<option value="Adidas">Adidas</option>
+				<option value="Nike">Nike</option>
+				<option value="Puma">Puma</option>
+				<option value="The North Face">The North Face</option>
+			</select>
+		</header>
+
 		<main class="main">
 			<div class="section-1"></div>
+
 			<div class="product-list">
 				<div class="product-list__results"></div>
 			</div>
+
 			<div class="section-3"></div>
 		</main>
 		<footer class="footer"></footer>
