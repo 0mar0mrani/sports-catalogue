@@ -4,8 +4,7 @@ export default async function Product() {
    let currentCategory = '';
    let currentBrand = '';
    let products = []; 
-   let currentCategory = '';
-   let currentBrand = '';
+  
    
    const productList = document.querySelector('.product-list__results');
    const categoryDropdown = document.querySelector('#header__category');
