@@ -21,7 +21,7 @@ You can find the database model [here](https://dbdiagram.io/d/642a8fad5758ac5f17
 ## Installation
 
 To install the application, you can clone the repository from GitHub:<br> 
-$ git clone https://github.com/OmarOmrani/sports-catalogue.git
+$ git clone https://github.com/0mar0mrani/sports-catalogue
 
 Then, open the `index.html` file in your web browser to use the application
 
